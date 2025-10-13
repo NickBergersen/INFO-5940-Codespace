@@ -12,6 +12,9 @@ langchain-community
 langchain
 langchain_core
 langchain-openai
+# added below
+chromadb
+sentence-transformers
 
 cfn_flip
 cfn-lint

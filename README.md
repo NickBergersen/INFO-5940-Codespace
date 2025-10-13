@@ -90,3 +90,52 @@ You will receive an individual API Key for class assignments. To prevent acciden
 
 ## Troubleshooting
 - The Jupyter extension should install automatically. If you still cannot select a Python kernel on Jupyter Notebook: Go to the left sidebar >> **Extensions** >> search for **Jupyter** >> reload window (or reinstall it).   
+
+
+
+## HW1 Instructions, Overview, Documentation on Application
+
+This is a Retrieval-Augmented Generation (RAG) application that allows users to upload documents and interact with their content through a conversational chat interface.
+
+**Key Features:**
+Multiple Document Upload: Upload multiple .txt and .pdf files at once
+Document Chunking: Automatically splits large documents into smaller chunks (1000 characters with 200 character overlap) for efficient processing
+Vector-Based Retrieval: Uses ChromaDB with HuggingFace embeddings to find relevant content
+Conversational Interface: Chat-style interface with conversation history
+PDF Support: Extracts and processes text from PDF documents
+RAG Pipeline: Retrieves relevant document chunks and generates accurate, context-aware answers
+
+**Instructions for Running the Application**
+
+The .devcontainer configuration will automatically set up the Python environment
+Dependencies will install automatically via postCreateCommand
+
+First need to install sentence-transformers and chromadb. In the terminal run 'pip install sentence-transformers' and 'pip install chromadb' as these were not included in requirements.txt and are used in my application.
+
+Run the application using this command in the terminal:
+
+API_KEY="your_actual_API_KEY" streamlit run chat_with_pdf.py
+
+Replace your_actual_API_KEY with your Cornell AI API key
+The application will open in your browser once you click on the green button in the lower right corner of screen
+
+
+**Interacting with the application:**
+
+Click "Browse files" to upload .txt or .pdf files (multiple files supported)
+Wait for "✅ Processed X document(s)!" confirmation
+Type questions in the chat input and press Enter
+Ask follow-up questions; the system remembers conversation context
+
+
+
+**Configuration Changes**
+Modified requirements.txt
+Added two dependencies to support RAG functionality:
+
+chromadb - Vector database for document storage and retrieval
+sentence-transformers - For generating document embeddings using HuggingFace models
+
+All other dependencies were already included in the provided requirements.txt file.
+.devcontainer/devcontainer.json
+No modifications were made. The provided devcontainer configuration works with the application as-is.
