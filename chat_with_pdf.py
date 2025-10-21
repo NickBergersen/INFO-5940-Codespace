@@ -92,7 +92,7 @@ def process_documents(files):
 if uploaded_files:
     current_files = [f.name for f in uploaded_files]
     
-    # Only reprocess if files changed
+    # only reprocess if files changed
     if current_files != st.session_state.processed_files:
         with st.spinner("Processing documents..."):
             st.session_state.vectorstore = process_documents(uploaded_files)
@@ -110,14 +110,13 @@ if question and st.session_state.vectorstore:
     
     with st.chat_message("assistant"):
         with st.spinner("Searching documents..."):
-            # Retrieve relevant chunks from vector store
+            # retrieve relevant chunks from vector store
             docs = st.session_state.vectorstore.similarity_search(question, k=4)
             context = "\n\n".join([doc.page_content for doc in docs])
             
             # cleaning
             context = context.encode('ascii', 'ignore').decode('ascii')
             
-            # cleaning
             clean_messages = []
             for msg in st.session_state.messages:
                 clean_content = msg["content"].encode('ascii', 'ignore').decode('ascii')
