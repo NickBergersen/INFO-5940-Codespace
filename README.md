@@ -100,7 +100,7 @@ This is a Retrieval-Augmented Generation (RAG) application that allows users to 
 **Key Features:**
 Multiple Document Upload: Upload multiple .txt and .pdf files at once
 Document Chunking: Automatically splits large documents into smaller chunks (1000 characters with 200 character overlap) for efficient processing
-Vector-Based Retrieval: Uses ChromaDB with HuggingFace embeddings to find relevant content
+Vector-Based Retrieval: Uses ChromaDB with HuggingFace (LangChain) embeddings to find relevant content
 Conversational Interface: Chat-style interface with conversation history
 PDF Support: Extracts and processes text from PDF documents
 RAG Pipeline: Retrieves relevant document chunks and generates accurate, context-aware answers
@@ -110,7 +110,7 @@ RAG Pipeline: Retrieves relevant document chunks and generates accurate, context
 The .devcontainer configuration will automatically set up the Python environment
 Dependencies will install automatically via postCreateCommand
 
-First need to install sentence-transformers and chromadb. In the terminal run 'pip install sentence-transformers' and 'pip install chromadb' as these were not included in requirements.txt and are used in my application.
+First need to install sentence-transformers and chromadb. In the terminal run 'pip install sentence-transformers' and 'pip install chromadb' as these were not included in requirements.txt (or need updated version) and are used in my application.
 
 Run the application using this command in the terminal:
 
@@ -134,7 +134,7 @@ Modified requirements.txt
 Added two dependencies to support RAG functionality:
 
 chromadb - Vector database for document storage and retrieval
-sentence-transformers - For generating document embeddings using HuggingFace models
+sentence-transformers - For generating document embeddings using HuggingFace (LangChain) models
 
 All other dependencies were already included in the provided requirements.txt file.
 .devcontainer/devcontainer.json
