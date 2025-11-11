@@ -24,6 +24,7 @@ I used claude to help me with the following error:
 
 Error code: 401 - {'error': {'message': 'Authentication Error, No api key passed in.', 'type': 'auth_error', 'param': 'None', 'code': '401'}}
 
+
 Claude then was able to debug that I had to run my API_KEY and OPENAI_API_KEY in the terminal with both of them being the same key along with the run streamlit command:
 
 OPENAI_API_KEY="YOUR_KEY_HERE" API_KEY="YOUR_KEY_HERE" streamlit run assign_2.py
