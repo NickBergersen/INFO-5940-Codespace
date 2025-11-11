@@ -1,21 +1,20 @@
 ## What I Learned from Implementing a Multi-Agent Workflow
 
-Implementing this multi-agent travel planner taught me the importance of clear role separation and specialized responsibilities. The Planner operates purely from its knowledge base to create comprehensive itineraries, while the Reviewer validates using real-time data through internet searches. This division of labor mirrors real-world workflows where different team members have distinct expertise and tools.
-
-I learned that agent orchestration requires careful prompt engineering to ensure each agent produces outputs in formats the next agent can consume. The sequential pipeline demonstrated how breaking complex tasks into specialized subtasks improves overall output quality. Watching the agents collaborate—with the Planner generating creative itineraries and the Reviewer fact-checking details like museum hours and ticket prices—showed me how AI systems can complement each other's strengths and limitations.
+Implementing this multi-agent travel planner revealed how task specialization significantly improves output quality. The Planner's focus on creative itinerary generation produced comprehensive plans quickly, while the Reviewer's dedicated validation with internet access caught critical errors like attraction closures and incorrect pricing. I learned that successful multi-agent systems need compatible output formats and clear handoff points—the Planner had to generate structured itineraries the Reviewer could systematically validate. Most importantly, explicitly defining what each agent should NOT do proved as crucial as defining what they should do. The orchestration showed me that agent collaboration creates emergent quality—the final validated itinerary consistently exceeded what either agent could produce alone. Through iterative testing, I discovered that providing concrete examples in prompts (like "9:00 AM - Visit Louvre Museum") was more effective than abstract instructions.
 
 ## Challenges Faced and How I Addressed Them
 
-The primary challenge was getting the Reviewer Agent to actually use the internet_search tool effectively. I ensured the tool was properly added to the reviewer_agent's tools list and crafted instructions that explicitly told the Reviewer when and why to search—checking opening hours, ticket prices, and current availability. Testing revealed that vague instructions led to the Reviewer skipping searches, so I made the tool usage requirements more explicit.
+My biggest challenge was getting the Reviewer to consistently use the internet_search tool. Initially, passive instructions ("you may use internet_search") resulted in generic feedback without verification. I solved this by making tool usage mandatory: listing specific categories to fact-check (opening hours, prices, closures) and using directive language like "Use the internet_search tool to fact-check..." This dramatically improved validation quality.
 
-Another challenge was API key configuration in the Codespaces environment. The .env file approach wasn't working reliably, so I had to run my key configuration in the terminal each time along with the streamlit command.
+API configuration presented another obstacle—the .env file failed repeatedly. I developed a workaround by setting environment variables directly in the terminal before launching Streamlit. This  approach allowed me to focus on the core multi-agent functionality rather than environment debugging.
+
+What could be improved: The system lacks feedback loops—if the Reviewer identifies major issues, the Planner can't revise. A true iterative workflow would enable replanning rather than having the Reviewer fix everything.
 
 ## Creative Ideas and Design Choices
 
-For the Planner instructions, I emphasized creating itineraries with specific times, locations, and cost breakdowns to make validation easier. I instructed the Planner to work "entirely from its own knowledge" to establish a clear baseline before fact-checking.
+I focused on transparency and actionability. The "Delta List" concept was my most important choice—requiring an explicit change log (what changed, why, and supporting evidence) rather than burying corrections in text. This creates accountability and educational value.
 
-For the Reviewer, I designed instructions around a "Delta List" concept—requiring specific changes with concrete reasons rather than vague suggestions. This forces the Reviewer to be actionable and evidence-based, giving users transparency into changes and a ready-to-use final plan.
-
+I framed the Reviewer as a "validator" rather than "critic" to encourage constructive feedback. Early tests showed "error-finding" language produced overly negative outputs, while "validation" language yielded balanced assessments acknowledging what worked alongside necessary corrections. I also emphasized specific, itemized costs in the Planner instructions to facilitate easier verification.
 
 
 ## GenAI assistance:
